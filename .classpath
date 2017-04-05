@@ -16,5 +16,13 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="src/main/java/com/ak/config"/>
+	<classpathentry excluding="main/resources/|main/java/com/ak/config/" kind="src" path="src"/>
+	<classpathentry kind="lib" path="src/main/java/com/ak/config/HibernateConfig.java"/>
+	<classpathentry kind="lib" path="src/main/java/com/ak/config/SecurityConfig.java"/>
+	<classpathentry kind="lib" path="src/main/java/com/ak/model/BaseEntity.java"/>
+	<classpathentry kind="lib" path="src/main/java/com/ak/model/Rent.java"/>
+	<classpathentry kind="lib" path="src/main/java/com/ak/model/Book.java"/>
+	<classpathentry kind="lib" path="src/main/java/com/ak/model/User.java"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
