@@ -1,11 +1,10 @@
-package main.java.com.ak.service;
+package com.ak.service;
 
 import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import main.java.com.ak.model.User;
-
+import com.ak.model.User;
 
 public interface UserService extends UserDetailsService {
 	List<User> findAll();

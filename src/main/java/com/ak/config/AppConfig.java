@@ -1,4 +1,4 @@
-package main.java.com.ak.config;
+package com.ak.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +14,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.ak.scheduler.AdvService;
+
+/**
+ * Klasa z konfiguracja beanow
+ * @author Micha� Makaruk
+ *
+ */
 @Configuration
 @ComponentScan(basePackages = "com.ak")
 @EnableWebMvc
@@ -21,14 +28,15 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableScheduling
 @EnableAsync
 public class AppConfig extends WebMvcConfigurerAdapter {
-	
+
 	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer conf){
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer conf) {
 		conf.enable();
 	}
 	
+	//definicja beana do rozpoznawania plikow widoku (stron .jsp)
 	@Bean
-	public ViewResolver viewResolver(){
+	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/");
 		viewResolver.setSuffix(".jsp");
@@ -36,13 +44,19 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	}
 	
 	@Bean
-	public JavaMailSender javaMailSender(){
+	public JavaMailSender javaMailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
-		mailSender.setUsername("bartoshcukub@gmail.com");
-		mailSender.setPassword("testpass123");
+		mailSender.setUsername("testlibrary123qwe@gmail.com");
+		mailSender.setPassword("2107Dmytro");
 		
 		return mailSender;
 	}
+	
+	@Bean
+	public AdvService getAdvService() {
+		return new AdvService();
+	}
+	
 }

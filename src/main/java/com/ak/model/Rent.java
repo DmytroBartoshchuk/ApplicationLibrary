@@ -1,8 +1,7 @@
-package main.java.com.ak.model;
+package com.ak.model;
 
-import main.java.com.ak.model.User;
-import main.java.com.ak.model.Book;
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,14 +9,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 
 @Entity
 @Table(name="rents")
-public class Rent extends BaseEntity {
+public class Rent extends BaseEntity{
 	
 	public enum Status {
 		IN_PROGRESS, FINISHED
@@ -26,19 +24,36 @@ public class Rent extends BaseEntity {
 	@Column(name = "created_date", nullable = false)
 	private Date createdDate;
 	
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Status status;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id", nullable = false)
-	public User user;
+	private User user;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="book_id", nullable = false)
-	public Book book;
+	private Book book;
 	
-	public Rent(){}
+	//trzeba pamietac aby w klasach encyjnych dodac pusty konstruktor
+	public Rent() {
+		
+	}
+	
+	
+
+	public Rent(User user, Book book) {
+		super();
+		this.user = user;
+		this.book = book;
+		createdDate = new Date();
+		status = Status.IN_PROGRESS;
+	}
+
+
 
 	public Date getCreatedDate() {
 		return createdDate;
@@ -73,19 +88,4 @@ public class Rent extends BaseEntity {
 	}
 	
 	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

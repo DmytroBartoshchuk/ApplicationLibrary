@@ -1,4 +1,4 @@
-package main.java.com.ak.model;
+package com.ak.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,21 +7,28 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="books")
-public class Book extends BaseEntity {
+@Table(name = "books")
+public class Book extends BaseEntity{
 	
+//	@Column(name="title")
 	@NotNull
-	@Size(min=3, max=255)
+	@Size(min=3, max=255, message = "Podaj dlugosc od {min} do {max}")
 	private String title;
 	
 	@NotNull
-	@Size(min=3, max=255, message = "Name length from {min} to {max}")
+	@Size(min=3, max=255)
 	private String author;
 	
 	@Min(0)
-	private Integer available;
+	private Integer available;  //liczba dostepnych ksiazek
 	
-	public Book(){}
+	public Book() {
+		
+	}
+	
+	public void decrementAvailable() {
+		available--;
+	}
 
 	public String getTitle() {
 		return title;

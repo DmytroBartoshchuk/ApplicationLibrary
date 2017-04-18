@@ -1,19 +1,20 @@
-package main.java.com.ak.service;
+package com.ak.service;
+
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.java.com.ak.dao.BookDao;
-import main.java.com.ak.model.Book;
+import com.ak.dao.BookDao;
+import com.ak.model.Book;
 
 @Service
 public class BookServiceImpl implements BookService {
 	
 	@Autowired
 	private BookDao bookDao;
-	
+
 	@Override
 	public List<Book> findAll() {
 		return bookDao.findAll();
@@ -26,12 +27,14 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public void save(Book book) {
-		bookDao.save(book);	
+		bookDao.save(book);
+		
 	}
 
 	@Override
 	public void delete(Long id) {
 		bookDao.delete(id);
+		
 	}
 
 }
